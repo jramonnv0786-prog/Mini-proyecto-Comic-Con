@@ -2,6 +2,8 @@
 El archivo comicon.php debe cumplir estrictamente con los siguientes requisitos:
 
 **Bloque 1: Configuración y Control de Errores**
+
+
 Configura el archivo para que muestre todos los errores de PHP en pantalla durante el desarrollo.
 Envuelve todo el procesamiento del formulario en un bloque try/catch/finally.
 Si ocurre algún error de validación crítico, se debe lanzar una excepción. En el bloque catch se capturara el mensaje de error para mostrárselo al usuario.
@@ -9,6 +11,8 @@ En el bloque finally, utiliza la funcion error_log para registrar de forma inter
 
 
 **Bloque 2: El Formulario HTML (La Vista)**
+
+
 El formulario debe enviarse por el metodo POST al mismo archivo e incluir los siguientes campos:
 
 Nombre completo: Campo de texto.
@@ -18,9 +22,13 @@ Talleres Especiales: Grupo de casillas de verificación (checkboxes) para apunta
 
 
 **Bloque 3: Procesamiento y Lógica en PHP (El Controlador)**
+
+
 El script debe detectar si se ha enviado el formulario por POST utilizando la superglobal correspondiente.
 
-Saneamiento y Validación: * Recupera los datos de forma segura utilizando el operador de Fusión de Nulos (Null Coalescing) para evitar advertencias si el usuario no selecciona ningún taller.
+Saneamiento y Validación:
+
+Recupera los datos de forma segura utilizando el operador de Fusión de Nulos (Null Coalescing) para evitar advertencias si el usuario no selecciona ningún taller.
 Sanea el nombre utilizando funciones que eviten la inyección de código malicioso (XSS).
 Valida que la edad sea un número entero positivo. Si la edad es menor de 18 años y ha seleccionado entrada VIP, la aplicación debe lanzar una excepción con el mensaje: "La entrada VIP está restringida a mayores de edad".
 Funciones y Cálculos:
@@ -30,6 +38,8 @@ Control de Ámbitos: Las variables que almacenen los resultados finales deben se
 
 
 **Bloque 4: Renderizado de Resultados (El Resguardo)**
+
+
 Si el formulario ha sido procesado con éxito, se ocultará o se mostrará debajo del formulario un resguardo limpio con la sintaxis de plantilla alternativa de PHP (if(): ... endif;), detallando:
 
 Nombre del asistente.
