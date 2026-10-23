@@ -9,7 +9,7 @@ error_reporting(E_ALL); //Avisa del error en todos los niveles del código.
 
 //Talleres de la Comicon
 
-const talleres = [
+const TALLERES = [
     'juegos' => ['nombre' => 'Torneo de juegos', 'precio' => 10],
     'disfraz' => ['nombre' => 'Taller de disfraces', 'precio' => 15],
     'rol' => ['nombre' => 'Zona de rol', 'precio' => 5],
@@ -35,11 +35,23 @@ function calcularPrecioBase(string $tipo): int
 function procesarInscripcion(string $tipo, array $talleres): array
 {
     $precioBase = calcularPrecioBase($tipo);
-    $total = calcularPrecioBase;
+    $total = $precioBase;
     $detalleTalleres = [];
 
+    //Recorremos las claves de los talleres que se marquen.
     foreach ($talleres as $clave) {
-        if (isset(TALLERES[$clave])) {
+        if (!isset(TALLERES[$clave])) {
             throw new Exception('Este taller no existe.');
         }
+        $detalleTalleres[] = TALLERES[$clave];
+        $total += TALLERES[$clave]['precio'];
     }
+
+    //Devolver array con resguardo.
+    return [
+        'precioBase' => $precioBase,
+        'talleres' => $detalleTalleres,
+        'total' => $total,
+    ];
+
+}
