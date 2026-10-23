@@ -70,5 +70,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $edad = filter_var($_POST['edad'] ?? '', FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
         $tipo = $_POST['tipo'] ?? '';
         $talleres = (array) ($_POST['talleres'] ?? []);
+        if ($nombre === '') {
+            throw new Exception('El nombre del comprador es obligatorio.');
+        }
+        if ($edad === false) {
+            throw new Exception('La edad debe ser un número entero positivo.');
+        }
+        if ($edad < 18 && $tipo === 'VIP') {
+            throw new Exception('La entrada VIP está restringida a mayores de edad.');
+        }
+        //Cálculo. 
+        $resultado = procesarInscripcion($tipo, $talleres);
+        $exito = true;
+
+    } catch (Exception $e) {
+        $error = $e->getMessage();
+    } finally {
+        error_log(date('Y/m/d-H:i:s') . '-Inscripción Comic-Con procesada: ' . ($exito ? 'EXITOSA' : 'FALLIDA'));
     }
 }
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
