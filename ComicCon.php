@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1); //Activamos el tipado estricto.
 
-//BLOQUE 1: Control de errores y configuración.
+//Control de errores y configuración.
 
 ini_Set('display_errors', '1'); //Mostramos errores por pantalla.
 ini_set('display_startup_errors', '1'); //Errores al arrancar el PHP.
@@ -14,8 +14,8 @@ const talleres = [
     'disfraz' => ['nombre' => 'Taller de disfraces', 'precio' => 15],
     'rol' => ['nombre' => 'Zona de rol', 'precio' => 5],
 ];
-// FUNCIONES
-//Devolverán el precio de la entrada según su tipo
+
+//Devolverá el precio de la entrada según su tipo.
 
 function calcularPrecioBase(string $tipo): int
 {
@@ -25,8 +25,21 @@ function calcularPrecioBase(string $tipo): int
         case 'VIP':
             return 60;
         case 'Infantil':
-            return 10;
-        default:
+            return 10; //Return que sale de la función.
+        default: //Default con excepción para evitar datos inexistentes.
             throw new Exception('Esta clase de entrada no está permitida');
     }
 }
+
+//Calculamos el precio total de las entradas con su taller seleccionado.
+function procesarInscripcion(string $tipo, array $talleres): array
+{
+    $precioBase = calcularPrecioBase($tipo);
+    $total = calcularPrecioBase;
+    $detalleTalleres = [];
+
+    foreach ($talleres as $clave) {
+        if (isset(TALLERES[$clave])) {
+            throw new Exception('Este taller no existe.');
+        }
+    }
