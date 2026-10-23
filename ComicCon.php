@@ -98,47 +98,67 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INSCRIPCIÓN A LA COMI-CON</title>
-</head>
 
+</head>
 <body>
     <h1> Inscripción Comic-Con</h1>
     <?php if ($error !== ''): ?>
         <p class="error"><strong>Error:</strong> <?= htmlspecialchars($error) ?></p>
     <?php endif; ?>
-    <form>
-        <method= "post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>">
-            <p>
-                <label for="nombre">Nombre completo:</label>
-                <input type="text" id="nombre" name="nombre" required>
-            </p>
-            <p>
-                <label for="edad">Edad:</label>
-                <input type="number" id="edad" name="edad" min="1" step="1" required>
-            </p>
 
-            <p>
-                <label for="tipo">Tipo de entrada:</label>
-                <select id="tipo" name="tipo">
-                    <option value="General">General (disponible)</option>
-                    <option value="VIP">VIP (disponible)</option>
-                    <option value="Infantil">Infantil (disponible)</option>
-                </select>
-            </p>
+    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>">
+        <p>
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </p>
+        <p>
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" min="1" step="1" required>
+        </p>
 
-            <fieldset>
-                <legend>Talleres especiales</legend>
-                <?php foreach (TALLERES as $clave => $taller): ?>
-                    <label>
-                        <input type="checkbox" name="talleres[]" value="<?= $clave ?>">
-                        <?= $taller['nombre'] ?> (
-                        <?= $taller['precio'] ?> €)
-                    </label><br>
-                <?php endforeach; ?>
-            </fieldset>
+        <p>
+            <label for="tipo">Tipo de entrada:</label>
+            <select id="tipo" name="tipo">
+                <option value="General">General (disponible)</option>
+                <option value="VIP">VIP (disponible)</option>
+                <option value="Infantil">Infantil (disponible)</option>
+            </select>
+        </p>
 
-            <button type="submit">Inscribirme</button>
+        <fieldset>
+            <legend>Talleres especiales</legend>
+            <?php foreach (TALLERES as $clave => $taller): ?>
+                <label>
+                    <input type="checkbox" name="talleres[]" value="<?= $clave ?>">
+                    <?= $taller['nombre'] ?> (
+                    <?= $taller['precio'] ?> €)
+                </label><br>
+            <?php endforeach; ?>
+        </fieldset>
+
+        <button type="submit">Inscribirme</button>
     </form>
-    </form>
+
+    <?php if ($exito): ?>
+        <section class="resguardo">
+            <h2>Resguardo de inscripción</h2>
+            <p><strong>Asistente:</strong> <?= $nombre ?></p>
+            <p><strong>Entrada:</strong> <?= $tipo ?>, <?= $resultado['precioBase'] ?> €</p>
+
+            <h3>Talleres</h3>
+            <?php if (empty($resultado['talleres'])): ?>
+                <p>No se ha apuntado a ningún taller.</p>
+            <?php else: ?>
+                <ul>
+                    <?php foreach ($resultado['talleres'] as $taller): ?>
+                        <li><?= $taller['nombre'] ?>: <?= $taller['precio'] ?> €</li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+
+            <p class="total"><strong>Total a pagar: <?= $resultado['total'] ?> €</strong></p>
+        </section>
+    <?php endif; ?>
 </body>
 
 </html>
