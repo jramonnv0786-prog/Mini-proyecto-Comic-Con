@@ -62,3 +62,13 @@ $error = '';
 $nombre = '';
 $tipo = '';
 $resultado = [];
+
+//Procesar si se ha enviado correctamente el formulario.
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    try {
+        $nombre = htmlspecialchars(trim($_POST['nombre'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $edad = filter_var($_POST['edad'] ?? '', FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+        $tipo = $_POST['tipo'] ?? '';
+        $talleres = (array) ($_POST['talleres'] ?? []);
+    }
+}
