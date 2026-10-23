@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <h1> Inscripción Comic-Con</h1>
 
-    <form>
+        <form>
         <method= "post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>">
             <p>
                 <label for="nombre">Nombre completo:</label>
