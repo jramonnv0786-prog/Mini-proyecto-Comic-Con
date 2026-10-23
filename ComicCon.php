@@ -98,49 +98,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INSCRIPCIÓN A LA COMI-CON</title>
-    <!-- Diseño aplicado al ejercicio para estética. -->
-    <style>
-        body {
-            max-width: 500px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-        }
-
-        h1 {
-            text-align: center;
-            color: #6d28d9;
-        }
-
-        form,
-        .resguardo {
-            background: #fff;
-            padding: 1.5rem;
-            border-radius: 8px;
-        }
-
-        button {
-            padding: 0.5rem 1rem;
-            color: #fff;
-            background: #6d28d9;
-            border: none;
-            border-radius: 4px;
-        }
-
-        .error {
-            padding: 0.75rem;
-            color: #b91c1c;
-            background: #fde8e8;
-            border-radius: 8px;
-        }
-
-        .resguardo {
-            margin-top: 1.5rem;
-            border: 2px dashed #6d28d9;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -176,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label>
                     <input type="checkbox" name="talleres[]" value="<?= $clave ?>">
                     <?= $taller['nombre'] ?> (
-                    <?= $taller['precio'] ?> €)
+                    <?= $taller['precio'] ?>€)
                 </label><br>
             <?php endforeach; ?>
         </fieldset>
