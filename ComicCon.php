@@ -93,12 +93,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>INSCRIPCIÓN A LA COMI-CON</title>
 </head>
+
 <body>
-    
+    <h1> Inscripción Comic-Con</h1>
+
+    <form>
+        <method= "post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>">
+            <p>
+                <label for="nombre">Nombre completo:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </p>
+            <p>
+                <label for="edad">Edad:</label>
+                <input type="number" id="edad" name="edad" min="1" step="1" required>
+            </p>
+
+            <p>
+                <label for="tipo">Tipo de entrada:</label>
+                <select id="tipo" name="tipo">
+                    <option value="General">General (disponible)</option>
+                    <option value="VIP">VIP (disponible)</option>
+                    <option value="Infantil">Infantil (disponible)</option>
+                </select>
+            </p>
+
+            <fieldset>
+                <legend>Talleres especiales</legend>
+                <?php foreach (TALLERES as $clave => $taller): ?>
+                    <label>
+                        <input type="checkbox" name="talleres[]" value="<?= $clave ?>">
+                        <?= $taller['nombre'] ?> (
+                        <?= $taller['precio'] ?> €)
+                    </label><br>
+                <?php endforeach; ?>
+            </fieldset>
+
+            <button type="submit">Inscribirme</button>
+    </form>
+    </form>
 </body>
+
 </html>
