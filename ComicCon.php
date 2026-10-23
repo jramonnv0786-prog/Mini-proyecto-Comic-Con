@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INSCRIPCIÓN A LA COMI-CON</title>
-    
+
     <style>
         body {
             max-width: 500px;
@@ -113,7 +113,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             color: #6d28d9;
         }
 
-        form, .resguardo {
+        form,
+        .resguardo {
             background: #fff;
             padding: 1.5rem;
             border-radius: 8px;
@@ -141,6 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 
 </head>
+
 <body>
     <h1> Inscripción Comic-Con</h1>
     <?php if ($error !== ''): ?>
@@ -166,6 +168,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </select>
         </p>
 
+        <!--*Fieldset -> es la etiqueta para agrupar campos relacionados, en este caso junta 
+        los 3 talleres en un mismo título -->
         <fieldset>
             <legend>Talleres especiales</legend>
             <?php foreach (TALLERES as $clave => $taller): ?>
