@@ -55,3 +55,10 @@ function procesarInscripcion(string $tipo, array $talleres): array
     ];
 
 }
+
+//Declaración de variables para su uso en HTML:
+$exito = false;
+$error = '';
+$nombre = '';
+$tipo = '';
+$resultado = [];
